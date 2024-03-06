@@ -11,14 +11,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Table(name = "foods")
-@Entity(name = "foods")
+@Entity(name = "food")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Food {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
@@ -26,4 +27,10 @@ public class Food {
     private String image;
 
     private Integer price;
+
+    public Food(FoodRequestDTO data) {
+        this.title = data.title();
+        this.image = data.image();
+        this.price = data.price();
+    }
 }
